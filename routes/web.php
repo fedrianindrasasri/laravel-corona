@@ -14,5 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user/index');
+})->name('index');
+
+Route::get('/berita', function() {
+    return view('user/berita');
+})->name('berita');
+
+Route::get('/faq', function() {
+    return view('user/faq');
+})->name('faq');
+
+Route::get('/infografik', function() {
+    return view('user/infografik');
+})->name('infografik');
+
+Route::get('/kontak', function() {
+    return view('user/kontak');
+})->name('kontak');
+
+Route::get('/rumahsakit', function() {
+    return view('user/rumahsakit');
+})->name('rumahsakit');
+
+
+
+Auth::routes();
+
+
+Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
 });
